@@ -1,0 +1,5 @@
+$.replaceMogrts = {
+    processReplacement: function(){
+        
+    }
+}
