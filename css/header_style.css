@@ -1,0 +1,18 @@
+#app-head{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: baseline;
+
+    width: 100%;
+    background-color: #151515;
+
+    font-weight: 800;
+    font-size: 20px;
+    padding: 10px, 20px;
+    
+}
+
+#app-title{
+    margin-left: 30px;
+}

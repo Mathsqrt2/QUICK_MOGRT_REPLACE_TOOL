@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ExtensionManifest Version="6.0" ExtensionBundleId="QUICK_MOGRT_REPLACE" ExtensionBundleVersion="11.1"
-ExtensionBundleName="QUICK_MOGRT_REPLACE" 
+<ExtensionManifest Version="6.0" ExtensionBundleId="QUICK_MOGRT_REPLACE_TOOL" ExtensionBundleVersion="11.1"
+ExtensionBundleName="QUICK_MOGRT_REPLACE_TOOL" 
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<ExtensionList>
-		<Extension Id="QUICK_MOGRT_REPLACE" Version="10.3.0"/>
+		<Extension Id="QUICK_MOGRT_REPLACE_TOOL" Version="10.3.0"/>
 	</ExtensionList>
 	<ExecutionEnvironment>
 		<HostList>
@@ -18,7 +18,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	</ExecutionEnvironment>
 
 	<DispatchInfoList>
-		<Extension Id="QUICK_MOGRT_REPLACE">
+		<Extension Id="QUICK_MOGRT_REPLACE_TOOL">
 			<DispatchInfo >
 				<Resources>
 					<MainPath>./index.html</MainPath>
@@ -34,7 +34,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 				</Lifecycle>
 				<UI>
 					<Type>Panel</Type>
-					<Menu>QUICK MOGRT REPLACE</Menu>
+					<Menu>QUICK MOGRT REPLACE TOOL</Menu>
 					<Geometry>
 						<Size>
 							<Height>300</Height>
