@@ -13,6 +13,20 @@
     
 }
 
+#app-head-content{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    
+    align-items: center;
+}
+
+#app-head-content #findElements{
+    margin-left: auto;
+    margin-right: 20px;
+    float: right;
+}
+
 #app-title{
     margin-left: 30px;
 }

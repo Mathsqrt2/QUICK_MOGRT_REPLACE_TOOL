@@ -1,0 +1,21 @@
+.confirm{
+    background-color: #30C448;
+    color: white;
+
+    font-weight: 600;
+    font-size: 15px;
+
+    padding: 12px 18px;
+    margin: 20px;
+
+    border: none;
+    border-radius: 24px;
+
+    transition: all, 0.18s ease-in-out;
+}
+
+.confirm:hover{
+    transform: scale(0.95,0.95);
+    background-color: #0a9626;
+}
+
