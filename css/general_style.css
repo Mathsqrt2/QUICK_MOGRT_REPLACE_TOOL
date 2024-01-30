@@ -22,3 +22,7 @@ body{
     width: 100%;
     background-color: #30C448;
 }
+
+.hidden{
+    display: none !important;
+}
