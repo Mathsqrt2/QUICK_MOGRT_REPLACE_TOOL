@@ -1,56 +1,50 @@
 var proj = app.project;
 var seq = proj.activeSequence;
+var pluginPath = "";
+var config = {};
 
 $.mogrts_control = {
-    displayAllElementsProperties: function(){
-        var headers = [];
-
-        for(i = 0; i < proj.activeSequence.videoTracks.length; i++){
-            for(j = 0; j < seq.videoTracks[i].clips.length; j++){
-                if(seq.videoTracks[i].clips[j].isMGT()){
-                    var title = seq.videoTracks[i].clips[j].name;
-
-                    if(this.presenceCheck(headers,title) == 0){
-                        var newCategory = {
-                            name: title,
-                            instancesNumber: 0,
-                            instances: [],
-                            addInstance: function(newElement){
-                                this.instances.push(newElement);
-                            },
-                            incrementIndex: function(){
-                                this.instancesNumber++;
-                            },
-                        };
-                        headers.push(newCategory);
-
-                    } else {
-                        for(i = 0; i < headers.length; i++){
-                            if(headers[i].name == title){
-                                headers[i].addInstance("kutas kozła");
-                                headers[i].incrementIndex();
-                            }
-                        }
-                    }                   
-                }
-            }
-        }
-
-        alert(" " + JSON.stringify(headers));
-        var file = new File("D:\\Archiwum\\Pulpit\\headers.json");
-            file.open('w');
-            file.write(JSON.stringify(headers));
-            file.close();
-
+    displayAllElementsProperties: function(userConfig){
+        config = JSON.parse(userConfig);
+        pluginPath = this.fixPath(config.presetPath);
+        this.saveLogs(userConfig,"displayAllElements");
     },
-    presenceCheck: function(array,element){
-        for(k = 0; k < array.length; k++){
-            if(array[k] == element){
-                return true;
-            }
-        }
-        return false;
-    },
+
     processReplacement: function(){
+    },
+
+    saveLogs: function(data,action){
+        var outputFilePath = this.fixPath(pluginPath)  + "\\logs\\log.json";
+        var file = new File(outputFilePath);
+
+        var actionTime = new Date();
+        var outputContent = [];
+        var oldLogState;
+        var useIndex = 0;
+
+        if(file.exists){
+            file.open("r");
+            oldLogState = file.read();
+            outputContent = JSON.parse(oldLogState);
+            useIndex = outputContent.length;      
+            file.close();
+        }
+
+        var newElement = {timestamp: actionTime.getTime(), index: useIndex, action: action};
+            outputContent.push(newElement);
+        
+            file.open('w');
+            file.write(JSON.stringify(outputContent) + "\n\n");
+            file.close();
+    },
+
+    fixPath: function(path){
+        var fixedPath = path;
+        
+            while(fixedPath.indexOf('/') > 0){
+                fixedPath = fixedPath.replace('/','\\');
+            }
+
+        return fixedPath;
     }
 }
