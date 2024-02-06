@@ -3,14 +3,22 @@ var seq = proj.activeSequence;
 var pluginPath = "";
 var config = {};
 
+function loadConfig(userConfig){
+    config = JSON.parse(userConfig);
+    pluginPath = $.mogrts_control.fixPath(config.presetPath);
+}
+
 $.mogrts_control = {
-    displayAllElementsProperties: function(userConfig){
-        config = JSON.parse(userConfig);
-        pluginPath = this.fixPath(config.presetPath);
-        this.saveLogs(userConfig,"displayAllElements");
+    displayAllElementsProperties: function(){
+        
+
+        this.saveLogs(config,"displayAllElements");
     },
 
     processReplacement: function(){
+
+
+        this.saveLogs(config,"processReplacement");
     },
 
     saveLogs: function(data,action){
@@ -40,11 +48,19 @@ $.mogrts_control = {
 
     fixPath: function(path){
         var fixedPath = path;
-        
+
             while(fixedPath.indexOf('/') > 0){
                 fixedPath = fixedPath.replace('/','\\');
             }
 
         return fixedPath;
+    },
+    presenceCheck: function(array,element){
+        for(var i = 0; i <= array.length; i++){
+            if(array[i] == element){
+                return 1;
+            }
+        }
+        return 0;
     }
 }
