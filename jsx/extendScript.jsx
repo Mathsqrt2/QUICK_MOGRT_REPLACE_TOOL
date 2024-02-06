@@ -59,8 +59,12 @@ $.mogrts_control = {
         return JSON.stringify(allMgrtElements);
     },
 
-    processReplacement: function(){
+    processReplacement: function(data){
+        var replacementData = JSON.parse(data);
 
+        for(var i = 0; i<replacementData.clips.length; i++){
+            
+        }
 
         this.saveLogs(config,"processReplacement");
     },
