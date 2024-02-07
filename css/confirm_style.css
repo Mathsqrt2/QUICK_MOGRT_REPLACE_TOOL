@@ -26,6 +26,10 @@
     transition: all, 0.18s ease-in-out;
 }
 
+.confirm:focus{
+    outline: none;
+}
+
 .confirm:hover{
     transform: scale(0.95,0.95);
     background-color: #0a9626;

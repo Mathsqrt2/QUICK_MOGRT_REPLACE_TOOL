@@ -1,0 +1,43 @@
+.property_header{
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    
+    border: 1px solid black;
+}
+
+.header_description{
+    margin-left: 10px;
+    font-weight: 800;
+}
+
+.showPropertiesButton{
+    height: fit-content;
+    padding: 4px 16px;
+    margin-left: 15px;
+
+    border: 1.5px solid #30C448;
+    border-radius: 32px;
+
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 12px;
+    background-color: rgba(0, 0, 0, 0.0);
+    color: white;
+    font-weight: 400;
+
+    transition: all, 0.18s ease-in-out;
+}
+
+.showPropertiesButton:hover{
+    transform: scale(0.95,0.95);
+    border: 1.5px solid #0a9626;
+}
+
+.showPropertiesButton:focus{
+    outline: none;
+}
+
+.propertiesField{
+    margin-top: 15px;
+}
