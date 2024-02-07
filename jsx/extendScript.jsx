@@ -60,21 +60,23 @@ $.mogrts_control = {
         return JSON.stringify(allMgrtElements);
     },
 
-    processReplacement: function(name,property,newValue){
+    processReplacement: function(name,property,newVal){
+        var newValue = JSON.parse(newVal);
             for(var i = 0; i < allMGT.length; i++){
                 if(allMGT[i].name == name){
-                    for(var j = 0; j < allMGT[i].components.length; j++){
-                        if(allMGT[i].components[j].displayName == "Graphic Parameters"){
-                            for(var k = 0; k < allMGT[i].components[j].properties.length; k++){
-                                if(allMGT[i].components[j].properties[k].displayName == property){
-                                    allMGT[i].components[j].properties[k].setValue(newValue,true);
+                    for(var j = 0; j < allMGT[i].instances.length; j++){
+                        for(var k = 0; k < allMGT[i].instances[j].components.length; k++){
+                            if(allMGT[i].instances[j].components[k].displayName == "Graphic Parameters"){
+                                for(var m = 0; m < allMGT[i].instances[j].components[k].properties.length; m++){
+                                    if(allMGT[i].instances[j].components[k].properties[m].displayName == property){
+                                        allMGT[i].instances[j].components[k].properties[m].setValue(newValue,true);
+                                    }
                                 }
                             }
                         }
                     }
                 }
             }
-
         this.saveLogs(config,"processReplacement");
     },
 
