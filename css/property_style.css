@@ -1,4 +1,4 @@
-.replacement_property_field{
+.replacementPropertyField{
     display: flex;
     flex-direction: column;
 }
@@ -69,6 +69,7 @@
 .mogrtValue{
     margin: 0;
     padding: 12px 0px;
+    color: #d1d1d1;
 }
 
 .propertySeparator{

@@ -50,11 +50,9 @@ $.mogrts_control = {
                 } 
             }
             if(clipsCounter < 1){
-                alert("this sequence doesn't contain any clips!");
+                return 0;
             }
-        } else {
-            alert("this sequence doesn't contain any video tracks!");
-        }
+        } 
         this.saveLogs(config,"displayAllElements");
         return JSON.stringify(allMgrtElements);
     },

@@ -1,4 +1,4 @@
-#app-head{
+#appHead{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -13,7 +13,7 @@
     
 }
 
-#app-head-content{
+#appHeadContent{
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -21,12 +21,12 @@
     align-items: center;
 }
 
-#app-head-content #findElements{
+#appHeadContent #findElements{
     margin-left: auto;
     margin-right: 20px;
     float: right;
 }
 
-#app-title{
+#appTitle{
     margin-left: 30px;
 }
