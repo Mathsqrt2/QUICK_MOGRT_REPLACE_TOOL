@@ -2,6 +2,7 @@ var proj = app.project;
 var seq = proj.activeSequence;
 var pluginPath = "";
 var config = {};
+var allMGT;
 
 function loadConfig(userConfig){
     config = JSON.parse(userConfig);
@@ -54,15 +55,17 @@ $.mogrts_control = {
             }
         } 
         this.saveLogs(config,"displayAllElements");
+        allMGT = allMgrtElements;
         return JSON.stringify(allMgrtElements);
     },
 
-    processReplacement: function(data){
-        var replacementData = JSON.parse(data);
+    processReplacement: function(name,property,newValue){
+        alert("dziala kruwa" + name +  " " + property + " " + newValue);
+        // var replacementData = JSON.parse(data);
 
-        for(var i = 0; i<replacementData.clips.length; i++){
+        // for(var i = 0; i<replacementData.clips.length; i++){
             
-        }
+        // }
 
         this.saveLogs(config,"processReplacement");
     },
