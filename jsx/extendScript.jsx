@@ -54,18 +54,26 @@ $.mogrts_control = {
                 return 0;
             }
         } 
+
         this.saveLogs(config,"displayAllElements");
         allMGT = allMgrtElements;
         return JSON.stringify(allMgrtElements);
     },
 
     processReplacement: function(name,property,newValue){
-        alert("dziala kruwa" + name +  " " + property + " " + newValue);
-        // var replacementData = JSON.parse(data);
-
-        // for(var i = 0; i<replacementData.clips.length; i++){
-            
-        // }
+            for(var i = 0; i < allMGT.length; i++){
+                if(allMGT[i].name == name){
+                    for(var j = 0; j < allMGT[i].components.length; j++){
+                        if(allMGT[i].components[j].displayName == "Graphic Parameters"){
+                            for(var k = 0; k < allMGT[i].components[j].properties.length; k++){
+                                if(allMGT[i].components[j].properties[k].displayName == property){
+                                    allMGT[i].components[j].properties[k].setValue(newValue,true);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
         this.saveLogs(config,"processReplacement");
     },
