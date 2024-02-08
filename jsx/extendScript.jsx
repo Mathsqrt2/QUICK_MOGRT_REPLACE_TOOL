@@ -70,11 +70,17 @@ $.mogrts_control = {
             for(var i = 0; i < allMGT[index].instances.length; i++){
                     allMGT[index].instances[i].components[cid].properties[pid].setValue(newVal,true);
             }
-            
-        this.saveLogs(config,"processReplacement");
+        var logRaport = {
+            action: "processReplacement",
+            propertyId: pid,
+            componentId: cid,
+            mgtIndex: index,
+            newValue: newValue,
+        }
+        this.saveLogs(config,logRaport);
     },
 
-    saveLogs: function(data,action){
+    saveLogs: function(data,logReport){
         var outputFilePath = this.fixPath(pluginPath)  + "\\logs\\log.json";
         var file = new File(outputFilePath);
 
@@ -91,7 +97,7 @@ $.mogrts_control = {
             file.close();
         }
 
-        var newElement = {timestamp: actionTime.getTime(), index: useIndex, action: action};
+        var newElement = {timestamp: actionTime.getTime(), index: useIndex, action: logReport};
             outputContent.push(newElement);
         
             file.open('w');
