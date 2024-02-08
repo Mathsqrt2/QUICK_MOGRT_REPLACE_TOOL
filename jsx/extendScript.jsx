@@ -67,9 +67,10 @@ $.mogrts_control = {
 
     processReplacement: function(index,pid,cid,newValue){
         var newVal = JSON.parse(newValue);
-            for(var j = 0; j < allMGT[index].instances.length; j++){
-                    allMGT[index].instances[j].components[cid].properties[pid].setValue(newVal,true);
+            for(var i = 0; i < allMGT[index].instances.length; i++){
+                    allMGT[index].instances[i].components[cid].properties[pid].setValue(newVal,true);
             }
+            
         this.saveLogs(config,"processReplacement");
     },
 

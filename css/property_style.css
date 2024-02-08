@@ -77,6 +77,15 @@
     align-items: center;
 }
 
+.boolBox{
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.boolHeader{
+    margin: 0px 10px;
+}
 
 .propertySeparator{
     height: 3px;
@@ -104,4 +113,12 @@
 
 .rangeSelector{
     max-width: 80%;
+}
+
+input[type=text].mogrtValue{
+    border: none;
+    padding: 10px;
+    width: 50%;
+    background-color: #1d1d1d;
+    text-wrap: wrap;
 }
