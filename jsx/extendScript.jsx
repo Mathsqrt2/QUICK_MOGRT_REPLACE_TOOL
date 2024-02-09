@@ -122,5 +122,10 @@ $.mogrts_control = {
             }
         }
         return 0;
+    },
+    checkClipDimensions: function(clipId){
+        // placeholder function;
+        var clipDims = [1920,1080];
+        return JSON.stringify(clipDims);
     }
 }

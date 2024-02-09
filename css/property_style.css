@@ -99,10 +99,32 @@
     text-align: center;
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 .numberBoxHeader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 0;
+}
+
+.arrayBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 15px;
+}
+
+.arrayValue{
+    background-color: rgba(0, 0, 0, 0.0);
+    border: none;
+    outline: none;
+    width: 50pt;
+    color: white;
+    text-align: center;
 }
 
 .numberRangelabel{
