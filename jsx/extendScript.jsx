@@ -33,7 +33,7 @@ $.mogrts_control = {
                                     var currentComponent = currentClip.components[l];
                                     if(currentComponent.displayName == "Graphic Parameters"){
                                         for(var m = 0; m < currentComponent.properties.length; m++){
-                                            var currentProperty = urrentComponent.properties[m];
+                                            var currentProperty = currentComponent.properties[m];
                                             var propertyObject = {
                                                 index: m,
                                                 c_id: l,
