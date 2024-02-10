@@ -16,25 +16,29 @@ $.mogrts_control = {
         if(seq.videoTracks.length){
             var mogrtCounter = 0;
             for(var i = 0; i < seq.videoTracks.length; i++){
-                if(seq.videoTracks[i].clips.length){
+                var currentTrack = seq.videoTracks[i]; 
+                if(currentTrack.clips.length){
                     for(var j = 0; j < seq.videoTracks[i].clips.length; j++){
-                        if(seq.videoTracks[i].clips[j].isMGT()){
-                            if(!this.namePresenceCheck(allMgrtElements,seq.videoTracks[i].clips[j].name)){
+                        var currentClip = currentTrack.clips[j];
+                        if(currentClip.isMGT()){
+                            if(!this.namePresenceCheck(allMgrtElements,currentClip.name)){
                                 var outputObject = {
-                                    name: seq.videoTracks[i].clips[j].name,
+                                    name: currentClip.name,
                                     properties: [],
                                     instances: [],
                                     index: mogrtCounter++,
                                 }
-                                outputObject.instances.push(seq.videoTracks[i].clips[j]);
-                                for(var l = 0; l < seq.videoTracks[i].clips[j].components.length; l++){
-                                    if(seq.videoTracks[i].clips[j].components[l].displayName == "Graphic Parameters"){
-                                        for(var m = 0; m < seq.videoTracks[i].clips[j].components[l].properties.length; m++){
+                                outputObject.instances.push(currentClip);
+                                for(var l = 0; l < currentClip.components.length; l++){
+                                    var currentComponent = currentClip.components[l];
+                                    if(currentComponent.displayName == "Graphic Parameters"){
+                                        for(var m = 0; m < currentComponent.properties.length; m++){
+                                            var currentProperty = urrentComponent.properties[m];
                                             var propertyObject = {
                                                 index: m,
                                                 c_id: l,
-                                                name: seq.videoTracks[i].clips[j].components[l].properties[m].displayName,
-                                                value: seq.videoTracks[i].clips[j].components[l].properties[m].getValue(),
+                                                name: currentProperty.displayName,
+                                                value: currentProperty.getValue(),
                                             };
                                             outputObject.properties.push(propertyObject);
                                         }
@@ -43,8 +47,8 @@ $.mogrts_control = {
                                 allMgrtElements.push(outputObject);
                             } else {
                                 for(var k = 0; k < allMgrtElements.length; k++){
-                                    if(allMgrtElements[k].name == seq.videoTracks[i].clips[j].name){
-                                        allMgrtElements[k].instances.push(seq.videoTracks[i].clips[j]);
+                                    if(allMgrtElements[k].name == currentClip.name){
+                                        allMgrtElements[k].instances.push(currentClip);
                                     }
                                 }
                             }                            
