@@ -1,5 +1,6 @@
 var proj = app.project;
 var seq = proj.activeSequence;
+var currentOS;
 var pluginPath = "";
 var config = {};
 var allMGT;
@@ -15,7 +16,7 @@ function isItFirstUseJSX(path) {
         actionTime: null,
     };
 
-    var logPath = $.runScript.fixPath(path) + $.runScript.fixPath("\\logs\\firstLaunchLog.json");
+    var logPath = $.mogrts_control.fixPath(path) + $.mogrts_control.fixPath("\\logs\\firstLaunchLog.json");
     var firstLaunchLog = new File(logPath);
 
     if (firstLaunchLog.exists) {
@@ -30,6 +31,11 @@ function isItFirstUseJSX(path) {
 
     var output = JSON.stringify(newResponse);
     return output;
+}
+
+function setOSValue(csinfo) {
+    var obj = JSON.parse(csinfo);
+    currentOS = csinfo.index;
 }
 
 $.mogrts_control = {
@@ -91,7 +97,6 @@ $.mogrts_control = {
         allMGT = allMgrtElements;
         return JSON.stringify(allMgrtElements);
     },
-
     processReplacement: function(index, pid, cid, newValue) {
         var newVal = JSON.parse(newValue);
         for (var i = 0; i < allMGT[index].instances.length; i++) {
@@ -106,7 +111,6 @@ $.mogrts_control = {
         }
         this.saveLogs(config, logRaport);
     },
-
     saveLogs: function(data, logReport) {
         var outputFilePath = this.fixPath(pluginPath) + "\\logs\\log.json";
         var file = new File(outputFilePath);
@@ -135,17 +139,20 @@ $.mogrts_control = {
         file.write(JSON.stringify(outputContent) + "\n\n");
         file.close();
     },
-
-    fixPath: function(path) {
-        var fixedPath = path;
-
-        while (fixedPath.indexOf('/') > 0) {
-            fixedPath = fixedPath.replace('/', '\\');
+    fixPath: function(pathToFix) {
+        var newPath = pathToFix;
+        if (!currentOS) {
+            while (newPath.indexOf("/") > 0) {
+                newPath = newPath.replace('/', '\\');
+            }
+            return newPath;
+        } else {
+            while (newPath.indexOf("\\") > 0) {
+                newPath = newPath.replace("\\", "/");
+            }
+            return newPath;
         }
-
-        return fixedPath;
     },
-
     namePresenceCheck: function(array, element) {
         for (var i = 0; i < array.length; i++) {
             if (array[i].name == element) {
