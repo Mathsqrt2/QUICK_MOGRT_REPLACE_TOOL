@@ -35,7 +35,7 @@ function isItFirstUseJSX(path) {
 
 function setOSValue(csinfo) {
     var obj = JSON.parse(csinfo);
-    currentOS = csinfo.index;
+    currentOS = obj.index;
 }
 
 $.mogrts_control = {
@@ -145,13 +145,12 @@ $.mogrts_control = {
             while (newPath.indexOf("/") > 0) {
                 newPath = newPath.replace('/', '\\');
             }
-            return newPath;
         } else {
             while (newPath.indexOf("\\") > 0) {
                 newPath = newPath.replace("\\", "/");
             }
-            return newPath;
         }
+        return newPath;
     },
     namePresenceCheck: function(array, element) {
         for (var i = 0; i < array.length; i++) {

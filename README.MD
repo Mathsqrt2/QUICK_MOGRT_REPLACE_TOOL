@@ -17,14 +17,18 @@ This plugin isn't officially available in the Adobe Plugins Store. To use it on 
 3) Create a new entry named: "PlayerDebugMode" 
 4) Set the value of the new entry to: "1"
 
-### MAC:
-```sh
-defaults write /Users//Library/Preferences/com.adobe.CSXS.11.plist PlayerDebugMode 1
-```
----
-
 All files will be working after You paste it in plugins directory:
 ```
 C:\Program Files (x86)\Common Files\Adobe\CEP\extensions
 ```
-The app will be available in Premiere Pro under "Window > Extensions > QUICK MOGRT REPLACE TOOL"
+### MAC:
+```sh
+defaults write /Users/<userprofile>/Library/Preferences/com.adobe.CSXS.11.plist PlayerDebugMode 1
+```
+All files will be working after You paste it in plugins directory:
+```
+Hard Drive/Library/Application Support/Adobe/CEP/extensions/
+```
+---
+
+The app will be available in Premiere Pro under "Window > Extensions > SIMPLE QUEUE TOOL"
