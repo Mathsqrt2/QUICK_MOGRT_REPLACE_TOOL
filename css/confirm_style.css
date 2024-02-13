@@ -1,42 +1,42 @@
-#confirmSection{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+#confirmSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.confirm{
-    background-color: #30C448;
-    color: white;
+.confirm {
+  background-color: #30c448;
+  color: white;
 
-    font-weight: 600;
-    font-size: 15px;
+  font-weight: 600;
+  font-size: 15px;
 
-    padding: 12px 18px;
-    margin: 20px;
+  padding: 12px 18px;
+  margin: 20px;
 
-    border: none;
-    border-radius: 24px;
+  border: none;
+  border-radius: 24px;
 
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 12px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 12px;
 
-    transition: all, 0.18s ease-in-out;
+  transition: all, 0.18s ease-in-out;
 }
 
-.confirm:focus{
-    outline: none;
+.confirm:focus {
+  outline: none;
 }
 
-.confirm:hover{
-    transform: scale(0.95,0.95);
-    background-color: #0a9626;
+.confirm:hover {
+  transform: scale(0.95, 0.95);
+  background-color: #0a9626;
 }
 
-.confirm:disabled{
-    background-color: #5c5c5c;
+.confirm:disabled {
+  background-color: #5c5c5c;
 }
 
-.confirm:disabled:hover{
-    transform: scale(1,1);
+.confirm:disabled:hover {
+  transform: scale(1, 1);
 }

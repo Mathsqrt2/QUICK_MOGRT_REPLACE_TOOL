@@ -1,146 +1,146 @@
-.replacementPropertyField{
-    display: flex;
-    flex-direction: column;
+.replacementPropertyField {
+  display: flex;
+  flex-direction: column;
 }
 
-.propertyHeader{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: left;
-    background-color: #1f1f1f;
-    border: 2px solid black;
+.propertyHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  background-color: #1f1f1f;
+  border: 2px solid black;
 }
 
-.propertyHeaderDescription{
-    margin-left: 10px;
-    font-weight: 800;
+.propertyHeaderDescription {
+  margin-left: 10px;
+  font-weight: 800;
 }
 
-.showPropertiesButton{
-    height: fit-content;
-    padding: 4px 16px;
-    margin-left: 15px;
+.showPropertiesButton {
+  height: fit-content;
+  padding: 4px 16px;
+  margin-left: 15px;
 
-    border: 2px solid #30C448;
-    border-radius: 32px;
+  border: 2px solid #30c448;
+  border-radius: 32px;
 
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 12px;
-    background-color: rgba(0, 0, 0, 0.0);
-    color: white;
-    font-weight: 400;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 12px;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  font-weight: 400;
 
-    transition: all, 0.18s ease-in-out;
+  transition: all, 0.18s ease-in-out;
 }
 
-.showPropertiesButton:hover{
-    transform: scale(0.95,0.95);
-    border: 1.5px solid #0a9626;
+.showPropertiesButton:hover {
+  transform: scale(0.95, 0.95);
+  border: 1.5px solid #0a9626;
 }
 
-.showPropertiesButton:focus{
-    outline: none;
+.showPropertiesButton:focus {
+  outline: none;
 }
 
-.propertiesField{
-    display: flex;
-    flex-direction: column;
+.propertiesField {
+  display: flex;
+  flex-direction: column;
 }
 
-.propertyBox{
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.propertyBox {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.mogrtProperty{
-    margin: 0;
-    padding-top: 10px;
-    color: #8b8b8b;
-    font-size: 14px;
-    text-wrap: wrap;
+.mogrtProperty {
+  margin: 0;
+  padding-top: 10px;
+  color: #8b8b8b;
+  font-size: 14px;
+  text-wrap: wrap;
 }
 
-.mogrtValue{
-    margin: 9px 0px;
-    padding: 3px 0px;
-    color: #d1d1d1;
-    background-color: rgba(0, 0, 0, 0.0);
-    width: 100%;
-    text-align: center;
-    text-wrap: wrap;
+.mogrtValue {
+  margin: 9px 0px;
+  padding: 3px 0px;
+  color: #d1d1d1;
+  background-color: rgba(0, 0, 0, 0);
+  width: 100%;
+  text-align: center;
+  text-wrap: wrap;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.boolBox{
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
+.boolBox {
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
 }
 
-.boolHeader{
-    margin: 0px 10px;
+.boolHeader {
+  margin: 0px 10px;
 }
 
-.propertySeparator{
-    height: 3px;
-    width: 100%;
-    background-color: rgb(41, 41, 41);
+.propertySeparator {
+  height: 3px;
+  width: 100%;
+  background-color: rgb(41, 41, 41);
 }
 
-.numberBox{
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+.numberBox {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
-.numberBoxHeader{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
+.numberBoxHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
 }
 
-.arrayBox{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    margin-bottom: 10px;
+.arrayBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 10px;
 }
 
-.arrayValue{
-    background-color: rgba(0, 0, 0, 0.0);
-    border: none;
-    outline: none;
-    width: 50pt;
-    color: white;
-    text-align: center;
+.arrayValue {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  outline: none;
+  width: 50pt;
+  color: white;
+  text-align: center;
 }
 
-.numberRangelabel{
-    margin: 0px 10px;
-    font-size: 12px;
-    color: #8b8b8b;
+.numberRangelabel {
+  margin: 0px 10px;
+  font-size: 12px;
+  color: #8b8b8b;
 }
 
-.rangeSelector{
-    max-width: 80%;
+.rangeSelector {
+  max-width: 80%;
 }
 
-input[type=text].mogrtValue{
-    border: none;
-    padding: 10px;
-    width: 50%;
-    background-color: #1d1d1d;
-    text-wrap: wrap;
+input[type="text"].mogrtValue {
+  border: none;
+  padding: 10px;
+  width: 50%;
+  background-color: #1d1d1d;
+  text-wrap: wrap;
 }
