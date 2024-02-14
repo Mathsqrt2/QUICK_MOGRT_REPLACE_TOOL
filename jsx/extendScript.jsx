@@ -92,7 +92,6 @@ $.mogrts_control = {
                 return 0;
             }
         }
-
         this.saveLogs(config, "displayAllElements");
         allMGT = allMgrtElements;
         return JSON.stringify(allMgrtElements);
@@ -134,7 +133,7 @@ $.mogrts_control = {
             action: logReport
         };
         outputContent.push(newElement);
-
+    
         file.open('w');
         file.write(JSON.stringify(outputContent) + "\n\n");
         file.close();
