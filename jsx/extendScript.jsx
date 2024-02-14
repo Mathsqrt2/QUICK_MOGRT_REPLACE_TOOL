@@ -112,7 +112,7 @@ $.mogrts_control = {
         this.saveLogs(config, logRaport);
     },
     saveLogs: function(data, logReport) {
-        var outputFilePath = this.fixPath(pluginPath) + "\\logs\\log.json";
+        var outputFilePath = this.fixPath(pluginPath) + this.fixPath("\\logs\\log.json");
         var file = new File(outputFilePath);
 
         var actionTime = new Date();
