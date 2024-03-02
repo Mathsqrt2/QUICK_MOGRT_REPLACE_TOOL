@@ -1,5 +1,7 @@
+app.enableQE();
 var proj = app.project;
 var seq = proj.activeSequence;
+var seqqe = qe.project.getActiveSequence();
 var currentOS;
 var pluginPath = "";
 var config = {};
@@ -42,14 +44,14 @@ $.mogrts_control = {
     displayAllElementsProperties: function() {
         var allMgrtElements = [];
 
-        if (seq.videoTracks.length) {
+        if (seqqe.numVideoTracks) {
             var mogrtCounter = 0;
-            for (var i = 0; i < seq.videoTracks.length; i++) {
-                var currentTrack = seq.videoTracks[i];
-                if (currentTrack.clips.length) {
-                    for (var j = 0; j < seq.videoTracks[i].clips.length; j++) {
-                        var currentClip = currentTrack.clips[j];
-                        if (currentClip.isMGT()) {
+            for (var i = 0; i < seqqe.numVideoTracks; i++) {
+                var currentTrack = seqqe.getVideoTrackAt(i);
+                if (currentTrack.numItems) {
+                    for (var j = 1; j <= currentTrack.numItems; j++) {
+                        var currentClip = currentTrack.getItemAt(j);
+                        if (this.isMGT(currentClip)) {
                             if (!this.namePresenceCheck(allMgrtElements, currentClip.name)) {
                                 var outputObject = {
                                     name: currentClip.name,
@@ -57,19 +59,26 @@ $.mogrts_control = {
                                     instances: [],
                                     index: mogrtCounter++,
                                 }
+
                                 outputObject.instances.push(currentClip);
-                                for (var l = 0; l < currentClip.components.length; l++) {
-                                    var currentComponent = currentClip.components[l];
-                                    if (currentComponent.displayName == "Graphic Parameters") {
-                                        for (var m = 0; m < currentComponent.properties.length; m++) {
-                                            var currentProperty = currentComponent.properties[m];
-                                            var propertyObject = {
-                                                index: m,
-                                                c_id: l,
-                                                name: currentProperty.displayName,
-                                                value: currentProperty.getValue(),
-                                            };
-                                            outputObject.properties.push(propertyObject);
+                                for (var l = 0; l < currentClip.numComponents; l++) {
+                                    var currentComponent = currentClip.getComponentAt(l);
+
+                                    if (currentComponent.name == "Graphic Parameters") {
+                                        for (var m = 0; m < currentComponent.getParamList().length; m++) {
+                                            var currentParam = currentComponent.getParamList()[m];
+
+                                            if (currentComponent.getParamValue(currentParam)) {
+                                                var propertyObject = {
+                                                    index: m,
+                                                    c_id: l,
+                                                    name: currentParam,
+                                                    value: currentComponent.getParamValue(currentParam)
+                                                };
+                                                outputObject.properties.push(propertyObject);
+                                                alert(JSON.stringify(propertyObject));
+                                            }
+
                                         }
                                     }
                                 }
@@ -95,6 +104,19 @@ $.mogrts_control = {
         this.saveLogs(config, "displayAllElements");
         allMGT = allMgrtElements;
         return JSON.stringify(allMgrtElements);
+    },
+    isMGT: function(QEitem) {
+        var len = QEitem.numComponents;
+        if (!len) {
+            return false;
+        } else {
+            for (var i = 0; i < len; i++) {
+                if (QEitem.getComponentAt(i).name == "Graphic Parameters") {
+                    return true;
+                }
+            }
+            return false;
+        }
     },
     processReplacement: function(index, pid, cid, newValue) {
         var newVal = JSON.parse(newValue);
@@ -133,7 +155,7 @@ $.mogrts_control = {
             action: logReport
         };
         outputContent.push(newElement);
-    
+
         file.open('w');
         file.write(JSON.stringify(outputContent) + "\n\n");
         file.close();
