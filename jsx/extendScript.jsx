@@ -49,7 +49,7 @@ $.mogrts_control = {
             for (var i = 0; i < seqqe.numVideoTracks; i++) {
                 var currentTrack = seqqe.getVideoTrackAt(i);
                 if (currentTrack.numItems) {
-                    for (var j = 1; j <= currentTrack.numItems; j++) {
+                    for (var j = 0; j < currentTrack.numItems; j++) {
                         var currentClip = currentTrack.getItemAt(j);
                         if (this.isMGT(currentClip)) {
                             if (!this.namePresenceCheck(allMgrtElements, currentClip.name)) {
@@ -67,16 +67,14 @@ $.mogrts_control = {
                                     if (currentComponent.name == "Graphic Parameters") {
                                         for (var m = 0; m < currentComponent.getParamList().length; m++) {
                                             var currentParam = currentComponent.getParamList()[m];
-
                                             if (currentComponent.getParamValue(currentParam)) {
                                                 var propertyObject = {
                                                     index: m,
                                                     c_id: l,
                                                     name: currentParam,
-                                                    value: currentComponent.getParamValue(currentParam)
+                                                    value: currentComponent.getParamValue(currentParam),
                                                 };
                                                 outputObject.properties.push(propertyObject);
-                                                alert(JSON.stringify(propertyObject));
                                             }
 
                                         }
@@ -91,9 +89,6 @@ $.mogrts_control = {
                                 }
                             }
                         }
-                        if (mogrtCounter < 1) {
-                            return 0;
-                        }
                     }
                 }
             }
@@ -103,6 +98,7 @@ $.mogrts_control = {
         }
         this.saveLogs(config, "displayAllElements");
         allMGT = allMgrtElements;
+        
         return JSON.stringify(allMgrtElements);
     },
     isMGT: function(QEitem) {
