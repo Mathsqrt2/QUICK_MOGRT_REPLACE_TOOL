@@ -1,49 +1,15 @@
+#include fsHandling.jsx
+
 app.enableQE();
 var proj = app.project;
 var seq = proj.activeSequence;
 var seqqe = qe.project.getActiveSequence();
-var currentOS;
-var pluginPath = "";
-var config = {};
-var allMGT;
 
-function loadConfig(userConfig) {
-    config = JSON.parse(userConfig);
-    pluginPath = $.mogrts_control.fixPath(config.presetPath);
-}
-
-function isItFirstUseJSX(path) {
-    var newResponse = {
-        isItFirstUse: true,
-        actionTime: null,
-    };
-
-    var logPath = $.mogrts_control.fixPath(path) + $.mogrts_control.fixPath("\\logs\\firstLaunchLog.json");
-    var firstLaunchLog = new File(logPath);
-
-    if (firstLaunchLog.exists) {
-        newResponse.isItFirstUse = false;
-    } else {
-        var currentTime = new Date();
-        newResponse.actionTime = currentTime.getTime();
-        firstLaunchLog.open("w");
-        firstLaunchLog.write(JSON.stringify(newResponse));
-        firstLaunchLog.close();
-    }
-
-    var output = JSON.stringify(newResponse);
-    return output;
-}
-
-function setOSValue(csinfo) {
-    var obj = JSON.parse(csinfo);
-    currentOS = obj.index;
-}
+var allMGT = [];
 
 $.mogrts_control = {
+    
     displayAllElementsProperties: function() {
-        var allMgrtElements = [];
-
         if (seqqe.numVideoTracks) {
             var mogrtCounter = 0;
             for (var i = 0; i < seqqe.numVideoTracks; i++) {
@@ -52,7 +18,7 @@ $.mogrts_control = {
                     for (var j = 0; j < currentTrack.numItems; j++) {
                         var currentClip = currentTrack.getItemAt(j);
                         if (this.isMGT(currentClip)) {
-                            if (!this.namePresenceCheck(allMgrtElements, currentClip.name)) {
+                            if (!this.namePresenceCheck(allMGT, currentClip.name)) {
                                 var outputObject = {
                                     name: currentClip.name,
                                     properties: [],
@@ -63,28 +29,29 @@ $.mogrts_control = {
                                 outputObject.instances.push(currentClip);
                                 for (var l = 0; l < currentClip.numComponents; l++) {
                                     var currentComponent = currentClip.getComponentAt(l);
-
                                     if (currentComponent.name == "Graphic Parameters") {
                                         for (var m = 0; m < currentComponent.getParamList().length; m++) {
                                             var currentParam = currentComponent.getParamList()[m];
+                                            var currentParamValue = currentComponent.getParamValue(currentParam);
                                             if (currentComponent.getParamValue(currentParam)) {
                                                 var propertyObject = {
                                                     index: m,
                                                     c_id: l,
                                                     name: currentParam,
-                                                    value: currentComponent.getParamValue(currentParam),
+                                                    value: currentParamValue
                                                 };
-                                                outputObject.properties.push(propertyObject);
-                                            }
 
+                                                // outputObject.properties.push(propertyObject);
+                                                outputObject.properties.push("cos");
+                                            }
                                         }
                                     }
                                 }
-                                allMgrtElements.push(outputObject);
+                                allMGT.push(outputObject);
                             } else {
-                                for (var k = 0; k < allMgrtElements.length; k++) {
-                                    if (allMgrtElements[k].name == currentClip.name) {
-                                        allMgrtElements[k].instances.push(currentClip);
+                                for (var k = 0; k < allMGT.length; k++) {
+                                    if (allMGT[k].name == currentClip.name) {
+                                        allMGT[k].instances.push(currentClip);
                                     }
                                 }
                             }
@@ -97,9 +64,8 @@ $.mogrts_control = {
             }
         }
         this.saveLogs(config, "displayAllElements");
-        allMGT = allMgrtElements;
-        
-        return JSON.stringify(allMgrtElements);
+
+        return JSON.stringify(allMGT);
     },
     isMGT: function(QEitem) {
         var len = QEitem.numComponents;
