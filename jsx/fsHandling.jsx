@@ -1,12 +1,24 @@
-#include extendScript.jsx
-
 var currentOS;
 var pluginPath = "";
 var config = {};
 
+function fixPath(pathToFix) {
+    var newPath = pathToFix;
+    if (!currentOS) {
+        while (newPath.indexOf("/") > 0) {
+            newPath = newPath.replace('/', '\\');
+        }
+    } else {
+        while (newPath.indexOf("\\") > 0) {
+            newPath = newPath.replace("\\", "/");
+        }
+    }
+    return newPath;
+}
+
 function loadConfig(userConfig) {
     config = JSON.parse(userConfig);
-    pluginPath = $.mogrts_control.fixPath(config.presetPath);
+    pluginPath = fixPath(config.presetPath);
 }
 
 function isItFirstUseJSX(path) {
@@ -15,7 +27,7 @@ function isItFirstUseJSX(path) {
         actionTime: null,
     };
 
-    var logPath = $.mogrts_control.fixPath(path) + $.mogrts_control.fixPath("\\logs\\firstLaunchLog.json");
+    var logPath = fixPath(path) + fixPath("\\logs\\firstLaunchLog.json");
     var firstLaunchLog = new File(logPath);
 
     if (firstLaunchLog.exists) {

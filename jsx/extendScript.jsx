@@ -4,12 +4,12 @@ app.enableQE();
 var proj = app.project;
 var seq = proj.activeSequence;
 var seqqe = qe.project.getActiveSequence();
-
 var allMGT = [];
 
 $.mogrts_control = {
-    
     displayAllElementsProperties: function() {
+        alert("works");
+
         if (seqqe.numVideoTracks) {
             var mogrtCounter = 0;
             for (var i = 0; i < seqqe.numVideoTracks; i++) {
@@ -65,7 +65,7 @@ $.mogrts_control = {
         }
         this.saveLogs(config, "displayAllElements");
 
-        return JSON.stringify(allMGT);
+        //return JSON.stringify(allMGT);
     },
     isMGT: function(QEitem) {
         var len = QEitem.numComponents;
@@ -95,7 +95,7 @@ $.mogrts_control = {
         this.saveLogs(config, logRaport);
     },
     saveLogs: function(data, logReport) {
-        var outputFilePath = this.fixPath(pluginPath) + this.fixPath("\\logs\\log.json");
+        var outputFilePath = fixPath(pluginPath) + fixPath("\\logs\\log.json");
         var file = new File(outputFilePath);
 
         var actionTime = new Date();
@@ -121,19 +121,6 @@ $.mogrts_control = {
         file.open('w');
         file.write(JSON.stringify(outputContent) + "\n\n");
         file.close();
-    },
-    fixPath: function(pathToFix) {
-        var newPath = pathToFix;
-        if (!currentOS) {
-            while (newPath.indexOf("/") > 0) {
-                newPath = newPath.replace('/', '\\');
-            }
-        } else {
-            while (newPath.indexOf("\\") > 0) {
-                newPath = newPath.replace("\\", "/");
-            }
-        }
-        return newPath;
     },
     namePresenceCheck: function(array, element) {
         for (var i = 0; i < array.length; i++) {
