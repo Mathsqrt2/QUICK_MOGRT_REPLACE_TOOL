@@ -4,12 +4,11 @@ app.enableQE();
 var proj = app.project;
 var seq = proj.activeSequence;
 var seqqe = qe.project.getActiveSequence();
-var allMGT = [];
+var allMGT;
 
 $.mogrts_control = {
     displayAllElementsProperties: function() {
-        alert("works");
-
+        allMGT = [];
         if (seqqe.numVideoTracks) {
             var mogrtCounter = 0;
             for (var i = 0; i < seqqe.numVideoTracks; i++) {
@@ -22,11 +21,9 @@ $.mogrts_control = {
                                 var outputObject = {
                                     name: currentClip.name,
                                     properties: [],
-                                    instances: [],
+                                    instances: 1,
                                     index: mogrtCounter++,
                                 }
-
-                                outputObject.instances.push(currentClip);
                                 for (var l = 0; l < currentClip.numComponents; l++) {
                                     var currentComponent = currentClip.getComponentAt(l);
                                     if (currentComponent.name == "Graphic Parameters") {
@@ -40,9 +37,7 @@ $.mogrts_control = {
                                                     name: currentParam,
                                                     value: currentParamValue
                                                 };
-
-                                                // outputObject.properties.push(propertyObject);
-                                                outputObject.properties.push("cos");
+                                                outputObject.properties.push(propertyObject);
                                             }
                                         }
                                     }
@@ -51,7 +46,7 @@ $.mogrts_control = {
                             } else {
                                 for (var k = 0; k < allMGT.length; k++) {
                                     if (allMGT[k].name == currentClip.name) {
-                                        allMGT[k].instances.push(currentClip);
+                                        allMGT[k].instances++;
                                     }
                                 }
                             }
@@ -65,7 +60,7 @@ $.mogrts_control = {
         }
         this.saveLogs(config, "displayAllElements");
 
-        //return JSON.stringify(allMGT);
+        return JSON.stringify(allMGT);
     },
     isMGT: function(QEitem) {
         var len = QEitem.numComponents;
